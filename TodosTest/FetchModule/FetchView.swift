@@ -19,7 +19,7 @@ struct FetchView: View {
                 ToolbarItem(placement: .principal) {
                     Text(AppCaption.fetcher)
                         .foregroundStyle(Color.white)
-                        .font(.system(size: 20,
+                        .font(.system(size: FetcherUIConstants.fontSize,
                                       weight: .bold))
                 }
             }
