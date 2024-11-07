@@ -17,7 +17,7 @@ struct FetchView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("Fetcher")
+                    Text(AppCaption.fetcher)
                         .foregroundStyle(Color.white)
                         .font(.system(size: 20,
                                       weight: .bold))
