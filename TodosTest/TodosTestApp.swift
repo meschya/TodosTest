@@ -11,7 +11,7 @@ import SwiftUI
 struct TodosTestApp: App {
     var body: some Scene {
         WindowGroup {
-            FetchView()
+            FetchView(isWifiOn: false)
         }
     }
 }

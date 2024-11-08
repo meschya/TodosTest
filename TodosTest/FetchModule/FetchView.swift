@@ -2,6 +2,8 @@ import SwiftUI
 
 struct FetchView: View {
     
+    @State var isWifiOn: Bool
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -9,7 +11,8 @@ struct FetchView: View {
                     .background
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-
+                    WifiButtonView(isWifiOn: $isWifiOn)
+                        .background(PulsatingWavesView(isWifiOn: $isWifiOn))
                 }
             }
             
@@ -28,5 +31,5 @@ struct FetchView: View {
 }
 
 #Preview {
-    FetchView()
+    FetchView(isWifiOn: false)
 }
