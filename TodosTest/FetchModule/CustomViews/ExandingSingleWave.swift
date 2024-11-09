@@ -5,7 +5,7 @@ struct ExandingSingleWave: View {
     
     // MARK: Public
     
-    var waveColor: Color = Color.lightGray
+    var waveColor: Color = .lightGray
     
     @Binding var isWifiOn: Bool
     
@@ -17,7 +17,7 @@ struct ExandingSingleWave: View {
     
     private let lineWidth: CGFloat = 2
     
-    private let speed: CGFloat = 1/2
+    private let speed: CGFloat = 1 / 2
     
     private let fullScaleEffect: CGFloat = 1
     

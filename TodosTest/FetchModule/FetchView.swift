@@ -1,8 +1,11 @@
 import SwiftUI
 
 struct FetchView: View {
+    // MARK: - Properties
     
     @State var isWifiOn: Bool
+    
+    // MARK: - View
     
     var body: some View {
         NavigationView {
@@ -11,11 +14,13 @@ struct FetchView: View {
                     .background
                     .edgesIgnoringSafeArea(.all)
                 VStack {
+                    Spacer()
                     WifiButtonView(isWifiOn: $isWifiOn)
                         .background(PulsatingWavesView(isWifiOn: $isWifiOn))
+                    Spacer()
+                    InformationView(isWifiOn: $isWifiOn)
                 }
             }
-            
             
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
