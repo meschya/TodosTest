@@ -6,4 +6,6 @@ enum AppCaption {
     static let fetchTodos: String = "Tap on the button to fetch todos"
 
     static let takeACoupleOfSeconds: String = "It’ll take a couple of seconds"
+    
+    static let showResults: String = "Show Results"
 }
