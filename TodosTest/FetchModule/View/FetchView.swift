@@ -3,6 +3,10 @@ import SwiftUI
 struct FetchView: View {
     // MARK: - Properties
     
+    // MARK: Public
+    
+    @ObservedObject var fetchViewModel = FetchViewModel()
+    
     @State var isWifiOn: Bool
     
     // MARK: - View
@@ -15,11 +19,13 @@ struct FetchView: View {
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     Spacer()
-                    WifiButtonView(isWifiOn: $isWifiOn)
+                    WifiButtonView(isWifiOn: $isWifiOn,
+                                   viewModel: fetchViewModel)
                         .background(PulsatingWavesView(isWifiOn: $isWifiOn))
                     Spacer()
                     InformationView(isWifiOn: $isWifiOn)
-                    WiFiToolsBarView(isWifiOn: $isWifiOn)
+                    WiFiToolsBarView(isWifiOn: $isWifiOn,
+                                     viewModel: fetchViewModel)
                 }
             }
             
