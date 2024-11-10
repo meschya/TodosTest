@@ -5,6 +5,8 @@ struct WiFiToolsBarView: View {
     
     @Binding var isWifiOn: Bool
     
+    @ObservedObject var viewModel: FetchViewModel
+    
     // MARK: - UIConstant
     
     private let cornerRadius: CGFloat = 40
@@ -12,14 +14,16 @@ struct WiFiToolsBarView: View {
     private let widthForButtonTitle: CGFloat = 155
     
     private var toolColor: Color {
-        return isWifiOn ? Color.appGreen.opacity(0.5) : Color.appGreen
+        return viewModel.todos.isEmpty ? Color.appGreen.opacity(0.5) : Color.appGreen
     }
     
     // MARK: - View
     
     var body: some View {
         HStack {
-            Button(action: {}) {
+            Button(action: {
+               // print(viewModel.todos.isEmpty)
+            }) {
                 Text(AppCaption.showResults)
                     .foregroundStyle(.black)
                     .padding()
@@ -27,7 +31,7 @@ struct WiFiToolsBarView: View {
                     .background(toolColor)
                     .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
             }
-            .disabled(isWifiOn)
+            .disabled(viewModel.todos.isEmpty)
             .padding()
             Spacer()
             Toggle(isOn: .constant(isWifiOn)) {}
@@ -39,8 +43,4 @@ struct WiFiToolsBarView: View {
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
         .padding(.horizontal)
     }
-}
-
-#Preview {
-    WiFiToolsBarView(isWifiOn: .constant(true))
 }

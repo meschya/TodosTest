@@ -3,7 +3,11 @@ import SwiftUI
 struct WifiButtonView: View {
     // MARK: - Properties
     
+    // MARK: Public
+    
     @Binding var isWifiOn: Bool
+
+    @ObservedObject var viewModel: FetchViewModel
     
     // MARK: - UIConstants
     
@@ -14,6 +18,10 @@ struct WifiButtonView: View {
     var body: some View {
         Button(action: {
                    isWifiOn.toggle()
+                   viewModel.getTodos()
+                   viewModel.completionRequest = {
+                       isWifiOn.toggle()
+                   }
                },
                label: {
                    Image(systemName: AppImage.wifi)
@@ -24,8 +32,4 @@ struct WifiButtonView: View {
                                         isWifiOn ? Color.appLightGreen : Color.lightGray)
                })
     }
-}
-
-#Preview {
-    WifiButtonView(isWifiOn: .constant(false))
 }
