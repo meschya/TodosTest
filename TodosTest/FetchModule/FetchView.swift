@@ -19,6 +19,7 @@ struct FetchView: View {
                         .background(PulsatingWavesView(isWifiOn: $isWifiOn))
                     Spacer()
                     InformationView(isWifiOn: $isWifiOn)
+                    WiFiToolsBarView(isWifiOn: $isWifiOn)
                 }
             }
             
