@@ -7,4 +7,6 @@ enum AppImage {
     static let checkmarkCircleFill: String = "checkmark.circle.fill"
     static let multiply: String = "multiply"
     static let chevronLeft: String = "chevron.left"
+    static let personFill: String = "person.fill"
+    static let personSlashFill: String = "person.slash.fill"
 }
