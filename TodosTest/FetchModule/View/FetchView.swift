@@ -11,6 +11,8 @@ struct FetchView: View {
     
     @State var isShowResults: Bool
     
+    @State var isToggle: Bool
+    
     // MARK: - View
     
     var body: some View {
@@ -24,11 +26,13 @@ struct FetchView: View {
                     NavigationLink(destination: ResultsView(todos: fetchViewModel.todos),
                                    isActive: $isShowResults) { EmptyView() }
                     WifiButtonView(isWifiOn: $isWifiOn,
+                                   isToggle: $isToggle,
                                    viewModel: fetchViewModel)
                         .background(PulsatingWavesView(isWifiOn: $isWifiOn))
                     Spacer()
                     InformationView(isWifiOn: $isWifiOn)
                     WiFiToolsBarView(isWifiOn: $isWifiOn,
+                                     isToggle: $isToggle,
                                      viewModel: fetchViewModel,
                                      clickButton: {self.isShowResults = true})
                 }
@@ -48,5 +52,5 @@ struct FetchView: View {
 }
 
 #Preview {
-    FetchView(isWifiOn: false, isShowResults: true)
+    FetchView(isWifiOn: false, isShowResults: true, isToggle: false)
 }

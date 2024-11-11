@@ -6,6 +6,8 @@ struct WifiButtonView: View {
     // MARK: Public
     
     @Binding var isWifiOn: Bool
+    
+    @Binding var isToggle: Bool
 
     @ObservedObject var viewModel: FetchViewModel
     
@@ -18,7 +20,7 @@ struct WifiButtonView: View {
     var body: some View {
         Button(action: {
                    isWifiOn.toggle()
-                   viewModel.getTodos()
+                   viewModel.getTodos(isToggle)
                    viewModel.completionRequest = {
                        isWifiOn.toggle()
                    }
