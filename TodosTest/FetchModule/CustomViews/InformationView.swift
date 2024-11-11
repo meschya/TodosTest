@@ -11,12 +11,6 @@ struct InformationView: View {
     
     private let cornerRadius: CGFloat = 18
     
-    private let fullRotate: CGFloat = 360
-    
-    private let linearDuration: CGFloat = 1
-    
-    private let linearSpeed: CGFloat = 0.1
-    
     private let imageSize: CGFloat = 28
     
     // MARK: - View

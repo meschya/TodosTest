@@ -5,7 +5,11 @@ struct WiFiToolsBarView: View {
     
     @Binding var isWifiOn: Bool
     
+    @Binding var isToggle: Bool
+    
     @ObservedObject var viewModel: FetchViewModel
+    
+    var clickButton: EmptyBlock
     
     // MARK: - UIConstant
     
@@ -22,7 +26,7 @@ struct WiFiToolsBarView: View {
     var body: some View {
         HStack {
             Button(action: {
-               // print(viewModel.todos.isEmpty)
+                clickButton()
             }) {
                 Text(AppCaption.showResults)
                     .foregroundStyle(.black)
@@ -34,7 +38,7 @@ struct WiFiToolsBarView: View {
             .disabled(viewModel.todos.isEmpty)
             .padding()
             Spacer()
-            Toggle(isOn: .constant(isWifiOn)) {}
+            Toggle(isOn: $isToggle) {}
                 .tint(toolColor)
                 .padding()
                 .disabled(isWifiOn)

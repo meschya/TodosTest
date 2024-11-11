@@ -8,20 +8,18 @@ final class FetchViewModel: ObservableObject {
         }
     }
     
-    @Published var todo: Todo? {
-        didSet {
-            completionRequest?()
-        }
-    }
-    
     var completionRequest: EmptyBlock?
     
     private var httpGatewayManager: HttpGatewayManager = .init()
     
-    func getTodos() {
+    func clearTodos() {
+        todos = []
+    }
+    
+    func getTodos(_ isToggle: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.httpGatewayManager.get(
-                route: FetchApiRoutes.todos,
+                route: isToggle ? FetchApiRoutes.todosWithUserId : FetchApiRoutes.todos,
                 completion: self.onGetTodosResponse,
                 errorCompletion: self.onGetTodosError
             )
@@ -38,5 +36,6 @@ final class FetchViewModel: ObservableObject {
     
     private enum FetchApiRoutes {
         static let todos = "todos/"
+        static let todosWithUserId = "todos?userId=5"
     }
 }

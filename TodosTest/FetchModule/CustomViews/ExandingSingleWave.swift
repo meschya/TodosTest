@@ -39,7 +39,7 @@ struct ExandingSingleWave: View {
                     .speed(speed), value: isAnimating)
         }
         .onAppear {
-            isAnimating.toggle()
+            isAnimating = true
         }
     }
 }
