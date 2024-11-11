@@ -32,6 +32,6 @@ struct WifiButtonView: View {
                               height: sizeImage)
                        .foregroundStyle(isWifiOn ? Color.appGreen : .white,
                                         isWifiOn ? Color.appLightGreen : Color.lightGray)
-               })
+        }).disabled(isWifiOn)
     }
 }

@@ -39,9 +39,10 @@ struct WiFiToolsBarView: View {
             .padding()
             Spacer()
             Toggle(isOn: $isToggle) {}
-                .tint(toolColor)
                 .padding()
                 .disabled(isWifiOn)
+                .toggleStyle(ImageToggleStyle(onImageName: AppImage.personFill,
+                                              offImageName: AppImage.personSlashFill))
         }
         .background(Color.lightGray)
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
