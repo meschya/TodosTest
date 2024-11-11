@@ -12,6 +12,10 @@ final class FetchViewModel: ObservableObject {
     
     private var httpGatewayManager: HttpGatewayManager = .init()
     
+    func clearTodos() {
+        todos = []
+    }
+    
     func getTodos(_ isToggle: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.httpGatewayManager.get(

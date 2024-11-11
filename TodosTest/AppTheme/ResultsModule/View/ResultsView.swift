@@ -5,6 +5,10 @@ struct ResultsView: View {
     
     @State var todos: [Todo] = []
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var disappear: EmptyBlock
+    
     // MARK: - UIConstant
     
     private let fontSize: CGFloat = 15
@@ -22,7 +26,10 @@ struct ResultsView: View {
                     Spacer()
                     createTableOfTodos()
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        disappear()
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
                         Text(AppCaption.done)
                             .frame(maxWidth: .infinity)
                             .foregroundStyle(.black)
@@ -32,6 +39,7 @@ struct ResultsView: View {
                     }.padding(.horizontal)
                 }
             }
+            .navigationBarItems(leading: backButton)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -43,17 +51,31 @@ struct ResultsView: View {
             }
         }
     }
+    
+    @ViewBuilder
+    private var backButton: some View {
+        Button(action: {
+            disappear()
+            presentationMode.wrappedValue.dismiss()
+        }) {
+            Image(systemName: AppImage.chevronLeft)
+                .foregroundStyle(Color.textGray)
+                .scaleEffect(0.6)
+                .font(Font.title.weight(.medium))
+        }
+    }
 
     @ViewBuilder
     private func createTableOfTodos() -> some View {
+        let withIndex = todos.enumerated().map({ $0 })
         List {
             Section {
-                ForEach(todos, id: \.self) { item in
+                ForEach(withIndex, id: \.element) { index, item in
                     if item.completed == false {
                         ResultCellView(text: item.title,
                                        isCompleted: item.completed)
                             .onTapGesture {
-                                self.todos[item.id - 1].completed.toggle()
+                                self.todos[index].completed.toggle()
                             }
                     }
                 }
@@ -67,12 +89,12 @@ struct ResultsView: View {
             }
 
             Section {
-                ForEach(todos, id: \.self) { item in
+                ForEach(withIndex, id: \.element) { index, item in
                     if item.completed == true {
                         ResultCellView(text: item.title,
                                        isCompleted: item.completed)
                         .onTapGesture {
-                            self.todos[item.id - 1].completed.toggle()
+                            self.todos[index].completed.toggle()
                         }
                     }
                 }
@@ -96,5 +118,5 @@ struct ResultsView: View {
 }
 
 #Preview {
-    ResultsView()
+    ResultsView(disappear: {})
 }

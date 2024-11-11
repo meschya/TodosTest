@@ -22,7 +22,7 @@ struct WifiButtonView: View {
                    isWifiOn.toggle()
                    viewModel.getTodos(isToggle)
                    viewModel.completionRequest = {
-                       isWifiOn.toggle()
+                       isWifiOn = false
                    }
                },
                label: {

@@ -23,7 +23,7 @@ struct FetchView: View {
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     Spacer()
-                    NavigationLink(destination: ResultsView(todos: fetchViewModel.todos),
+                    NavigationLink(destination: ResultsView(todos: fetchViewModel.todos, disappear: fetchViewModel.clearTodos).navigationBarBackButtonHidden(true),
                                    isActive: $isShowResults) { EmptyView() }
                     WifiButtonView(isWifiOn: $isWifiOn,
                                    isToggle: $isToggle,
@@ -34,7 +34,10 @@ struct FetchView: View {
                     WiFiToolsBarView(isWifiOn: $isWifiOn,
                                      isToggle: $isToggle,
                                      viewModel: fetchViewModel,
-                                     clickButton: {self.isShowResults = true})
+                                     clickButton: {
+                        self.isShowResults = true
+                    }
+                    )
                 }
             }
             
