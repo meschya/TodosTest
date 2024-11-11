@@ -8,12 +8,6 @@ final class FetchViewModel: ObservableObject {
         }
     }
     
-    @Published var todo: Todo? {
-        didSet {
-            completionRequest?()
-        }
-    }
-    
     var completionRequest: EmptyBlock?
     
     private var httpGatewayManager: HttpGatewayManager = .init()

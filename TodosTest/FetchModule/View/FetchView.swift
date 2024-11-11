@@ -9,6 +9,8 @@ struct FetchView: View {
     
     @State var isWifiOn: Bool
     
+    @State var isShowResults: Bool
+    
     // MARK: - View
     
     var body: some View {
@@ -19,13 +21,16 @@ struct FetchView: View {
                     .edgesIgnoringSafeArea(.all)
                 VStack {
                     Spacer()
+                    NavigationLink(destination: ResultsView(todos: fetchViewModel.todos),
+                                   isActive: $isShowResults) { EmptyView() }
                     WifiButtonView(isWifiOn: $isWifiOn,
                                    viewModel: fetchViewModel)
                         .background(PulsatingWavesView(isWifiOn: $isWifiOn))
                     Spacer()
                     InformationView(isWifiOn: $isWifiOn)
                     WiFiToolsBarView(isWifiOn: $isWifiOn,
-                                     viewModel: fetchViewModel)
+                                     viewModel: fetchViewModel,
+                                     clickButton: {self.isShowResults = true})
                 }
             }
             
@@ -43,5 +48,5 @@ struct FetchView: View {
 }
 
 #Preview {
-    FetchView(isWifiOn: false)
+    FetchView(isWifiOn: false, isShowResults: true)
 }

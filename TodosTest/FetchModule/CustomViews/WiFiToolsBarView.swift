@@ -7,6 +7,8 @@ struct WiFiToolsBarView: View {
     
     @ObservedObject var viewModel: FetchViewModel
     
+    var clickButton: EmptyBlock
+    
     // MARK: - UIConstant
     
     private let cornerRadius: CGFloat = 40
@@ -22,7 +24,7 @@ struct WiFiToolsBarView: View {
     var body: some View {
         HStack {
             Button(action: {
-               // print(viewModel.todos.isEmpty)
+                clickButton()
             }) {
                 Text(AppCaption.showResults)
                     .foregroundStyle(.black)
